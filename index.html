@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>zx
     </title>
     <style>
@@ -116,73 +115,181 @@
             height: 300px;
             position: relative;
             /* border: 1px solid red; */
-            /* margin: auto;
-        } */
+            /* margin: auto;*/
+        }
 
-            .item img {
-                width: 100%;
-                height: 300px;
-                vertical-align: top;
-                position: absolute;
-            }
+        .item img {
+            width: 100%;
+            height: 300px;
+            vertical-align: top;
+            position: absolute;
+        }
 
-            .div1 {
-                position: absolute;
-                left: 0;
-                top: 50%;
-                transform: translatey(-50%);
-                cursor: pointer;
-                width: 41px;
-                height: 69px;
-                font-size: 30px;
-                line-height: 70px;
-                text-align: center;
-                color: #D6D8D4;
-                background-color: rgba(0, 0, 0, 0.3);
-            }
+        .div1 {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translatey(-50%);
+            cursor: pointer;
+            width: 41px;
+            height: 69px;
+            font-size: 30px;
+            line-height: 70px;
+            text-align: center;
+            color: #D6D8D4;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
 
-            .div2 {
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translatey(-50%);
-                cursor: pointer;
-                width: 41px;
-                height: 69px;
-                font-size: 30px;
-                line-height: 70px;
-                text-align: center;
-                color: #D6D8D4;
-                background-color: rgba(0, 0, 0, 0.3);
-            }
+        .div2 {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translatey(-50%);
+            cursor: pointer;
+            width: 41px;
+            height: 69px;
+            font-size: 30px;
+            line-height: 70px;
+            text-align: center;
+            color: #D6D8D4;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
 
-            .pagenation {
-                position: absolute;
-                /* border: 1px solid red; */
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                bottom: 40px;
-            }
+        .pagenation {
+            position: absolute;
+            /* border: 1px solid red; */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            bottom: 40px;
+        }
 
-            .pagenation>div {
-                width: 10px;
-                height: 10px;
-                border-radius: 50%;
-                background-color: white;
-                margin-right: 10px;
-                cursor: pointer;
-            }
+        .pagenation>div {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: white;
+            margin-right: 10px;
+            cursor: pointer;
+        }
 
-            .pagenation>div:last-child {
-                margin-right: 0;
-            }
+        .pagenation>div:last-child {
+            margin-right: 0;
+        }
+
+        .notification {
+            display: flex;
+            flex-direction: column;
+            isolation: isolate;
+            position: relative;
+            /* width: 18rem; */
+            height: 8rem;
+            background: #29292c;
+            border-radius: 1rem;
+            overflow: hidden;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 16px;
+            --gradient: linear-gradient(to bottom, #2eadff, #3d83ff, #7e61ff);
+            --color: #32a6ff
+        }
+
+        .notification:before {
+            position: absolute;
+            content: "";
+            inset: 0.0625rem;
+            border-radius: 0.9375rem;
+            background: #18181b;
+            z-index: 2
+        }
+
+        .notification:after {
+            position: absolute;
+            content: "";
+            width: 0.25rem;
+            inset: 0.65rem auto 0.65rem 0.5rem;
+            border-radius: 0.125rem;
+            background: var(--gradient);
+            transition: transform 300ms ease;
+            z-index: 4;
+        }
+
+        .notification:hover:after {
+            transform: translateX(0.15rem)
+        }
+
+        .notititle {
+            color: var(--color);
+            padding: 0.65rem 0.25rem 0.4rem 1.25rem;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+        }
+
+        .notification:hover .notititle {
+            transform: translateX(0.15rem)
+        }
+
+        .notibody {
+            color: #99999d;
+            padding: 0 1.25rem;
+            transition: transform 300ms ease;
+            z-index: 5;
+        }
+
+        .notification:hover .notibody {
+            transform: translateX(0.25rem)
+        }
+
+        .notiglow,
+        .notiborderglow {
+            position: absolute;
+            width: 20rem;
+            height: 20rem;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle closest-side at center, white, transparent);
+            opacity: 0;
+            transition: opacity 300ms ease;
+        }
+
+        .notiglow {
+            z-index: 3;
+        }
+
+        .notiborderglow {
+            z-index: 1;
+        }
+
+        .notification:hover .notiglow {
+            opacity: 0.1
+        }
+
+        .notification:hover .notiborderglow {
+            opacity: 0.1
+        }
+
+        .note {
+            color: var(--color);
+            position: fixed;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 0.9rem;
+            width: 75%;
+        }
     </style>
 </head>
 
 <body>
-
+    <!-- 外部js -->
+    <script type="text/Javascript"
+        src="https://static.codemao.cn/pickduck/BJHroI4rR.js?hash=FhKqR4FndGZTQ9Ja2EgBgzoKYa0D"></script>
+    <script type="text/javascript"
+        src="https://static.codemao.cn/pickduck/SkV_qL4BR.js?hash=FjKEqatxRU5XTYBmPzoFc1zRKmoF"></script>
     <!-- 头部导航栏  -->
+    <div class="back-to-top cd-top faa-float animated cd-is-visible" style="top: -900px;"></div>
+
     <div>
         <div class="music_1_3">
             <div class="music_1_4694">
@@ -193,7 +300,7 @@
                 </div>
             </div>
             <a href="" style="text-decoration: none;">
-                <div class="music_1_4978"><span class="music_1_4978_1_4625">Home</span></div>
+                <div class="music_1_4978"><span class="music_1_4978_1_4625" style="color: yellow;">Home</span></div>
             </a>
             <div class="music_1_4978"><span class="music_1_4978_1_4625">About</span></div>
             <div class="music_1_4978"><span class="music_1_4978_1_4625">Some</span></div>
@@ -204,7 +311,8 @@
 
     <div class="banner">
         <div class="warp">
-            <div class="item"><img src="#" alt="">
+            <div class="item"><img
+                    src="https://static.codemao.cn/pickduck/r1CYxLNrA.png?hash=FjxME3sIGQeSy5xL9NE9c25BFEjR" alt="">
             </div>
             <div class="item"><img src="#" alt="">
             </div>
@@ -292,14 +400,38 @@
             }
         }
     </script>
+    <div class="notification" style="margin-top: 50px;margin-bottom: 50px;">
+        <div class="notiglow"></div>
+        <div class="notiborderglow"></div>
+        <div class="notititle">看看我们的产品吧</div>
+        <div class="notibody"><a href="https://zxlwl.github.io/Y-music/" style="text-decoration: none;"><strong style="color: white;">
+                    <li>Y music</li>
+                </strong></a></div>
+
+    </div>
     <!-- 页尾 -->
     <footer style="border-bottom: 100px;">
-        <ul>
-            <li class="libiaoqian"><a href="#" style="text-decoration: none; color: #000000;">关于我们</a></li>
-            <li class="libiaoqian"><a href="https://shequ.pgaot.com"
-                    style="text-decoration: none; color: #000000;">pickduck友情链接</a></li>
-        </ul>
+        <div style="background-color: #6e6e6e;border-radius: 5px;">
+            <div class="music_1_7">
+                <img src="https://static.codemao.cn/pickduck/SJZOeWVrR.png?hash=FsSjunNu9IN-V-32RXSpBURESaEq"
+                    class="music_1_5012">
+                <span class="music_1_451">z x</span>
+            </div>
+            <ul>
+                <strong style="margin-right: 75px; margin-left: 15px;">我们</strong>
+                <strong>友情链接</strong><br>
+                <li style="list-style-type: none; display: inline-block;margin-right: 60px;"><a href="#"
+                        style="text-decoration: none; color: #000000;">关于我们</a></li>
+
+                <li style="list-style-type: none;display: inline-block;"><a href="https://shequ.pgaot.com"
+                        style="text-decoration: none; color: #000000;">pickduck</a></li>
+            </ul>
+            <br>
+        </div>
     </footer>
+
+
+    <!-- 外部js-->
 </body>
 
 </html>

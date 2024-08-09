@@ -1,0 +1,158 @@
+<input type="file" onchange="readFile(this)">
+<div class="a">
+
+</div>
+<script>
+    var funDownload = function (content, filename) {
+        // 创建隐藏的可下载链接
+        var eleLink = document.createElement('a');
+        eleLink.download = filename;
+        eleLink.style.display = 'none';
+        // 字符内容转变成blob地址
+        var blob = new Blob([content]);
+        eleLink.href = URL.createObjectURL(blob);
+        // 触发点击
+        document.body.appendChild(eleLink);
+        eleLink.click();
+        // 然后移除
+        document.body.removeChild(eleLink);
+    };
+
+
+
+
+
+
+    const a = document.querySelector('.a')
+    function readFile(input) {
+        let file = input.files[0];
+
+        let reader = new FileReader();
+
+        reader.readAsText(file);
+
+        reader.onload = function () {
+            console.log(reader.result);
+            pscpkj(reader.result)
+        };
+
+        reader.onerror = function () {
+            console.log(reader.error);
+        };
+
+    }
+
+    function pscpkj(data) {
+        let data01 = data.replace("title", "label");
+        data01 = data01.replace('isGlobalWidget', 'global')
+        data01 = data01.replace(/types/g, 'type')
+        console.log(data01);
+
+        data01 = data01.replace(/properties/g, 'props')
+        data01 = data01.replace(/events/g, 'emits')
+        // data01 = data01.replace('InvisibleWidget', 'visibleWidget')
+        data01 = data01.replace('isInvisibleWidget:', 'visibleWidget:!')
+        data01 = data01.replace('InvisibleWidget', 'widgetClass')
+
+        // let num = 2 // 定义替换第二个匹配项
+        // let strtest = data01;
+        // // console.log("InvisibleWidget" + strtest)
+        // let arrstr = strtest.split("InvisibleWidget");
+        // if (arrstr.length < num)
+        //     return
+        // let arrstr1 = [], arrstr2 = []
+        // for (let ii = 0; ii < arrstr.length; ii++) {
+        //     if (ii < num)
+        //         arrstr1.push(arrstr[ii])
+        //     else
+        //         arrstr2.push(arrstr[ii])
+        // }
+        // let outstr = arrstr1.join("InvisibleWidget") + "widgetClass" + arrstr2.join("测试");
+        // // console.log("输出字符串：" + outstr)
+
+        console.log(data01);
+        a.innerHTML = data01
+        funDownload(data01, '默认名称.js')
+
+    }
+    function getJson(jsonStr) {
+        var stringStack = new stack();
+        var indexList = [];
+        var jsonList = [];
+        for (var i = 0; i < jsonStr.length; i++) {
+            if (jsonStr.charAt(i) == '{' || jsonStr.charAt(i) == '[') {
+                stringStack.push(new JsonStack(i, jsonStr.charAt(i)));
+            } else if (jsonStr.charAt(i) == '}' || jsonStr.charAt(i) == ']') {
+                if (stringStack.dataStore.length != 0) {
+                    var js = stringStack.peek();
+                    if (jsonStr.charAt(i) == '}' && js.char == '{') {
+                        js = stringStack.pop();
+                    } else if (jsonStr.charAt(i) == ']' && js.char == '[') {
+                        js = stringStack.pop();
+                    }
+                    indexList.push(js.index);
+                    indexList.push(i);
+                }
+            }
+            if (stringStack.dataStore.length == 0 && indexList.length > 0) {
+                var tempStr = getJsonStr(indexList, jsonStr);
+                if (!(tempStr == null || tempStr.length == 0)) {
+                    jsonList.push(tempStr);
+                }
+                indexList.splice(0, indexList.length);;
+            }
+        }
+        if (indexList != null && indexList.length > 0) {
+            var tempStr = getJsonStr(indexList, jsonStr);
+            if (!(tempStr == null || tempStr.length == 0)) {
+                jsonList.push(tempStr);
+            }
+        }
+        if (jsonList != null && jsonList.length > 0) {
+            return jsonList[0];
+        } else {
+            return null;
+        }
+    }
+    function getJsonStr(indexList, str) {
+        var temp = "";
+        for (var i = indexList.length - 1; i >= 0; i = i - 2) {
+            try {
+                temp = str.substring(indexList[i - 1], indexList[i] + 1);
+                JSON.parse(temp);
+                return temp;
+            } catch (e) {
+                continue;
+            }
+        }
+        return null;
+    }
+    function JsonStack(index, char) {
+        this.index = index;
+        this.char = char;
+    }
+    function stack() {
+        this.dataStore = [];//保存栈内元素，初始化为一个空数组
+        this.top = 0;//栈顶位置，初始化为0
+        this.push = push;//入栈
+        this.pop = pop;//出栈
+        this.peek = peek;//查看栈顶元素
+        this.clear = clear;//清空栈
+        this.length = length;//栈内存放元素的个数
+    }
+    function push(element) {
+        this.dataStore[this.top++] = element;
+    }
+    function pop() {
+        return this.dataStore[--this.top];
+    }
+    function peek() {
+        return this.dataStore[this.top - 1];
+    }
+    function clear() {
+        this.top = 0;
+    }
+    function length() {
+        return this.top;
+    }
+</script>

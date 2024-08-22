@@ -55,45 +55,47 @@ const a = new Vue({
             this.nowtitle = this.talklist[this.nowlist].name
         },
         newtalk() {//对话
-            if (this.talk != '') {
-                this.isdisabled = true
-                this.guzilist.push({
-                    name: '我',
-                    fangwei: true,
-                    talk: this.talk
-                })
-                this.guzilist.push({
-                    name: 'Y ai',
-                    fangwei: false,
-                    talk: 'loading'
-                })
-                data = JSON.stringify({
-                    "prompt": this.talk,
-                    "token": getToken(this.talk),
-                    "stream": false
-                });
-                config = {
-                    method: 'post',
-                    url: 'https://ai.coludai.cn/api/chat',
-                    headers: {
-                        'ca': '0fb8f3f3-e2b7-412f-82c9-ff1f6187b1a7',
-                        // 'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-                        'Content-Type': 'application/json'
-                    },
-                    data: data
-                };
-                axios(config)
-                    .then(re => {
-                        this.guzilist[this.guzilist.length - 1].talk = re.data.output;
-                        this.talk = ''
-                        this.isdisabled = false
+            if (!this.isdisabled) {
+                if (this.talk != '') {
+                    this.isdisabled = true
+                    this.guzilist.push({
+                        name: '我',
+                        fangwei: true,
+                        talk: this.talk
                     })
-                    .catch((error) => {
-                        console.log(error);
+                    this.guzilist.push({
+                        name: 'Y ai',
+                        fangwei: false,
+                        talk: 'loading'
+                    })
+                    data = JSON.stringify({
+                        "prompt": this.talk,
+                        "token": getToken(this.talk),
+                        "stream": false
                     });
-            }
-            else {
-                alert('请勿输入空信息')
+                    config = {
+                        method: 'post',
+                        url: 'https://ai.coludai.cn/api/chat',
+                        headers: {
+                            'ca': '0fb8f3f3-e2b7-412f-82c9-ff1f6187b1a7',
+                            // 'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+                            'Content-Type': 'application/json'
+                        },
+                        data: data
+                    };
+                    axios(config)
+                        .then(re => {
+                            this.guzilist[this.guzilist.length - 1].talk = re.data.output;
+                            this.talk = ''
+                            this.isdisabled = false
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+                else {
+                    alert('请勿输入空信息')
+                }
             }
         },
         genname() {

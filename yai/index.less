@@ -1,0 +1,249 @@
+body {
+    display: flex;
+    // flex-direction: column;
+    height: 100vh;
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #88888880;
+    border-radius: 5px;
+}
+
+.toclick {
+    background-image: linear-gradient(120deg, #0042dd 0%, #f68084 100%);
+}
+
+
+.app {
+    display: flex;
+
+    width: 100%;
+    height: 100%;
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        width: 50px;
+        transition: all .5s;
+
+        height: 100%;
+        // background-color: #d90e0e;
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        align-items: center;
+
+        .talklist {
+            overflow: auto;
+            height: calc(100%-80px);
+
+            .talklistbox {
+                display: flex;
+                width: 30px;
+                height: 30px;
+                border-radius: 3px;
+                transition: all .5s;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+            }
+
+            .talklistbox01 {
+                display: flex;
+                width: 165px;
+                height: 30px;
+                transition: all .5s;
+                border-radius: 3px;
+                justify-content: center;
+                align-items: center;
+                margin-top: 10px;
+                background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+            }
+        }
+    }
+
+    .left01 {
+        display: flex;
+        flex-direction: column;
+        width: 180px;
+        transition: all .5s;
+        height: 100%;
+        // background-color: #d90e0e;
+        background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+        align-items: center;
+    }
+
+    .talk {
+        width: calc(100%-40px);
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+        overflow: auto;
+
+        .titlenow {
+            font-size: 25px;
+            text-align: center;
+        }
+
+        // background-color: #5b2222;
+        .input {
+            background-color: #ffffff;
+            // max-width: 190px;
+            height: 20px;
+            padding: 10px;
+            width: 80%;
+            color: #000000;
+            /* text-align: center; */
+            border: 2px solid rgb(0, 0, 0);
+            border-radius: 5px;
+            /* box-shadow: 3px 3px 2px rgb(249, 255, 85); */
+        }
+
+        .input01 {
+            position: relative;
+            width: 80%;
+        }
+
+        .input:focus {
+            color: rgb(0, 0, 0);
+            background-color: #ffffff;
+            outline-color: rgb(0, 178, 178);
+            box-shadow: -2px -2px 15px rgb(0, 178, 178);
+            transition: .1s;
+            transition-property: box-shadow;
+        }
+
+        .talk {
+            flex: 1;
+
+            background-color: #ffffff;
+
+            ul {
+                overflow: auto;
+                height: 100%;
+
+                li {
+                    margin-top: 20px;
+                    display: flex;
+                    list-style: none;
+                    padding: 5px;
+
+                    .a {
+                        display: flex;
+                        padding: 10px;
+                        width: 1000px;
+                        background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+                        border-radius: 10px;
+                        align-items: center;
+                    }
+
+
+                    .photo {
+
+                        display: flex;
+                        // background-color: #7c7c7c;
+                        background: linear-gradient(-180deg, #BCC5CE 0%, #929EAD 98%), radial-gradient(at top left, rgba(255, 255, 255, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+                        background-blend-mode: screen;
+                        color: #ffffff;
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50%;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 20px;
+                    }
+
+                    .right {
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
+                        border-radius: 10px;
+                        height: auto;
+                        white-space: normal;
+                        width: 1000px;
+                        // flex: 1;
+                        display: flex;
+                        flex-wrap: wrap;
+                        flex-direction: column;
+
+
+                        .title {
+                            margin-left: 10px;
+                            font-size: 20px;
+                        }
+
+                        .text {
+                            display: flex;
+                            width: 900px;
+                            white-space: normal;
+                            word-wrap: break-word;
+                            overflow-wrap: break-word;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .in {
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+
+            .maintalk {
+
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                top: 90%;
+                width: 80%;
+                height: auto;
+            }
+
+            button {
+
+                // left: 90%;
+                // transform: translateY();
+                height: 45px;
+                border-radius: 5px;
+                min-width: 80px;
+                border: 0px;
+
+                &:hover {
+                    box-shadow: -3px -3px 15px rgb(196, 247, 247);
+                }
+            }
+        }
+    }
+}
+
+.talkend {
+    .title {
+        margin-right: 10px;
+    }
+
+    .text {
+        width: 900px;
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        margin-right: 10px;
+    }
+
+    align-items: end;
+}
+
+.talkright {
+    // justify-content: flex-end;
+    flex-direction: row-reverse;
+}

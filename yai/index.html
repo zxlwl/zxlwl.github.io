@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y Ai</title>
+    <link rel="stylesheet" href="./index.css">
+
+
+</head>
+
+<body>
+    <div class="app">
+        <div class="left" :class="allleftclass">
+            <svg t="1724247824400" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="4243" width="40" height="50" @click="zhankai()">
+                <path
+                    d="M712.175484 344.856774a20.149677 20.149677 0 0 0-33.032258 15.194839v303.896774a20.149677 20.149677 0 0 0 33.032258 15.194839l172.75871-151.948387a20.149677 20.149677 0 0 0 0-30.389678zM165.16129 202.818065h693.67742a33.032258 33.032258 0 1 0 0-66.064517H165.16129a33.032258 33.032258 0 1 0 0 66.064517zM165.16129 431.236129h352.949678a33.032258 33.032258 0 0 0 0-66.890323H165.16129a33.032258 33.032258 0 0 0 0 66.890323zM165.16129 659.654194h352.949678a33.032258 33.032258 0 0 0 0-66.064517H165.16129a33.032258 33.032258 0 0 0 0 66.064517zM858.83871 821.181935H165.16129a33.032258 33.032258 0 1 0 0 66.890323h693.67742a33.032258 33.032258 0 1 0 0-66.890323z"
+                    fill="#040000" p-id="4244"></path>
+            </svg>
+            <div class="new" @click="newtalklist()">
+                <svg t="1724248819435" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="5228" width="30" height="30">
+                    <path
+                        d="M925.696 384q19.456 0 37.376 7.68t30.72 20.48 20.48 30.72 7.68 37.376q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68l-287.744 0 0 287.744q0 20.48-7.68 37.888t-20.48 30.208-30.72 20.48-37.376 7.68q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888l0-287.744-287.744 0q-20.48 0-37.888-7.68t-30.208-20.48-20.48-30.208-7.68-37.888q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68l287.744 0 0-287.744q0-19.456 7.68-37.376t20.48-30.72 30.208-20.48 37.888-7.68q39.936 0 68.096 28.16t28.16 68.096l0 287.744 287.744 0z"
+                        p-id="5229"></path>
+                </svg>
+            </div>
+            <div class="talklist">
+                <div v-for="(item,index) in talklist" @click="linktalk(index)" :style="item.class"
+                    :class="{toclick:item.class,talklistbox:leftclass,talklistbox01:!leftclass}">
+                    {{ index +1}}
+                </div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="titlenow" @click="genname()">
+                {{nowtitle}}
+                <hr>
+            </div>
+            <div class="talk">
+                <ul class="maintalklist">
+                    <li v-for="(item,index) in guzilist" :class="{talkright:item.fangwei}">
+                        <div class="a" :class="{talkright:item.fangwei}">
+                            <div class="photo">{{item.name.substring(0, 1)}}</div>
+                            <div :class="{right:true,talkend:item.fangwei}">
+                                <div class="title">{{item.name}}</div>
+                                <div class="text" :class="{talkright:item.fangwei}">{{item.talk}}</div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="in">
+                <div class="maintalk">
+                    <input placeholder="Enter your text..." class="input" name="text" type="text" v-model="talk"
+                        @keyup.enter="newtalk()">
+                    <button class="inbutton" @click="newtalk()" :disabled="isdisabled">发送</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script crossorigin="anonymous"
+        integrity="sha512-e2c+O0PvytekkdJLc82DHfa6La8TPKzO2/DFA97YeHTbiDCwKMzloupJM6Llf/W4K19+N21gFyplVkvzL4pZxQ=="
+        src="https://lib.baomitu.com/crypto-js/3.3.0/crypto-js.min.js"></script> -->
+    <script src="https://static.codemao.cn/pickduck/r1abddVsA.js?hash=Fkk7dBeKY0Kf_yqrCBs6HKc9NiCF"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

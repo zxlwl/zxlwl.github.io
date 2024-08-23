@@ -149,7 +149,6 @@ body {
   font-size: 20px;
 }
 .app .main .talk ul li .right .text {
-  display: flex;
   width: 900px;
   white-space: normal;
   word-wrap: break-word;

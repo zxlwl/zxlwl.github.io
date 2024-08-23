@@ -46,7 +46,7 @@
                             <div class="photo">{{item.name.substring(0, 1)}}</div>
                             <div :class="{right:true,talkend:item.fangwei}">
                                 <div class="title">{{item.name}}</div>
-                                <div class="text" :class="{talkright:item.fangwei}">{{item.talk}}</div>
+                                <div class="text" :class="{talkright:item.fangwei}" v-html="item.talk"></div>
                             </div>
                         </div>
                     </li>
@@ -65,10 +65,15 @@
     <!-- <script crossorigin="anonymous"
         integrity="sha512-e2c+O0PvytekkdJLc82DHfa6La8TPKzO2/DFA97YeHTbiDCwKMzloupJM6Llf/W4K19+N21gFyplVkvzL4pZxQ=="
         src="https://lib.baomitu.com/crypto-js/3.3.0/crypto-js.min.js"></script> -->
+    <!-- 这两个应该是MD5,忘记了 -->
     <script src="https://static.codemao.cn/pickduck/r1abddVsA.js?hash=Fkk7dBeKY0Kf_yqrCBs6HKc9NiCF"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+    <!-- vue文件 -->
     <script src="https://static.codemao.cn/pickduck/BkHY-UrsC.js?hash=FsKq1kU7kSpBG-TFpuKeNzYP0ABC"></script>
+    <!-- markdown渲染 -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/marked/2.0.3/marked.js"></script>
+
     <script src="./index.js"></script>
 </body>
 

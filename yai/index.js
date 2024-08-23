@@ -85,7 +85,7 @@ const a = new Vue({
                     };
                     axios(config)
                         .then(re => {
-                            this.guzilist[this.guzilist.length - 1].talk = re.data.output;
+                            this.guzilist[this.guzilist.length - 1].talk = marked(re.data.output)
                             this.talk = ''
                             this.isdisabled = false
                         })

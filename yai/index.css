@@ -173,7 +173,7 @@ body {
 .app .main .in button {
   height: 45px;
   border-radius: 5px;
-  min-width: 80px;
+  min-width: 40px;
   border: 0px;
 }
 .app .main .in button:hover {

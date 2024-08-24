@@ -24,13 +24,7 @@ const a = new Vue({
                 class: true//废弃
             }
         ],
-        guzilist: [
-            {
-                name: '我',
-                fangwei: true,
-                talk: '社工'
-            }
-        ],
+        guzilist: [],
         nowlist: 0,
         leftclass: 'talklistbox',
         allleftclass: 'left',

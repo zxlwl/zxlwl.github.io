@@ -19,8 +19,8 @@ body {
   height: 100%;
 }
 .app .right {
-  flex: 1;
   height: 100%;
+  width: 100%;
 }
 .app .right .table {
   height: 100%;
@@ -28,6 +28,7 @@ body {
   display: flex;
 }
 .app .right .table .bo_li {
+  padding: 5px;
   border: 1px solid #bdbdbd;
 }
 .keep {

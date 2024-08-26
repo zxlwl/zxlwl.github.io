@@ -1,0 +1,72 @@
+body {
+  height: 100vh;
+  padding: 0%;
+  margin: 0%;
+}
+.app {
+  height: 99%;
+  display: flex;
+  padding: 0%;
+  margin: 0%;
+}
+.app .left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  border-radius: 10px;
+  height: 100%;
+}
+.app .right {
+  flex: 1;
+  height: 100%;
+}
+.app .right .table {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.app .right .table .bo_li {
+  border: 1px solid #bdbdbd;
+}
+.keep {
+  background-color: #454545;
+}
+.ke {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 50px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+.color1 {
+  background-color: #ff0303;
+}
+.color2 {
+  background-color: #3f8fff;
+}
+.color3 {
+  background-color: #23ff06;
+}
+.color4 {
+  background-color: #e0ff16;
+}
+.color5 {
+  background-color: #9f4040;
+}
+.color6 {
+  background-color: #fb15ff;
+}
+.color7 {
+  background-color: #ffab25;
+}
+.color8 {
+  background-color: #25b3ff;
+}
+.color9 {
+  background-color: #4925ff;
+}

@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>课程表生成器-zx</title>
     <link rel="stylesheet" href="./index.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script> -->
     <script src="https://static.codemao.cn/pickduck/Sk6ZKOYoR.js?hash=FvdCzpDmExIP2wPGUy13G5i3NEfy"></script>
-
 </head>
 
 <body>
+    <canvas id="screenshotCanvas" style="display: none;"></canvas>
     <div class="app">
         <div class="left" data-if="move">
             <div draggable="true" class="ke color1">语文</div>
@@ -22,6 +23,7 @@
             <div draggable="true" class="ke color7">生物</div>
             <div draggable="true" class="ke color8">物理</div>
             <div draggable="true" class="ke color9">化学</div>
+            <!-- <div draggable="false" class="ke link">下载图片</div> -->
         </div>
         <div class="right">
             <div class="table">

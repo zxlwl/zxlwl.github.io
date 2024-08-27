@@ -27,6 +27,11 @@ body {
   width: 100%;
   display: flex;
 }
+.app .right .table .tou_li {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid #bdbdbd;
+}
 .app .right .table .bo_li {
   padding: 5px;
   border: 1px solid #bdbdbd;

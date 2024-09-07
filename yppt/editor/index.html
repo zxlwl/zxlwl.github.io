@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>y ppt -极简美观的新一代ppt</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body style="width: 100vw;height: 100vh;">
+    <div class="app" style="width: 100vw;height: 100vh;">
+        <div class="header">
+            <div class="body">
+                <div class="card" draggable="true" data-get="none">文本</div>
+                <div class="card" draggable="true" data-get="none">图片</div>
+                <div class="card" draggable="true" data-get="none">超链接</div>
+                <div class="card" draggable="true" data-get="none">音频</div>
+                <div class="card" draggable="true" data-get="none">视频</div>
+
+                <div class="card" style="margin-left: 100px;" @click="daoru()">导入</div>
+                <div class="card" style="margin-left: 10px;" @click="daochu()">导出</div>
+                <div class="card" style="margin-left: 10px;" @click="yuran()">预览页</div>
+                <div class="card" style="margin-left: 10px;" @click="share()">分享</div>
+            </div>
+        </div>
+        <div class="body">
+
+            <div
+                :style="{zIndex:99999,display:nowzhuangtai ,position: 'fixed',height: '100vh',top:'0px', width: '120px',backgroundColor: '#e3e3e3'}">
+                <div v-if="nowzhuangtaihtml==1">
+                    文本:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].text"
+                        style="width: 100%;">
+                    <br><br><br>
+                    颜色:<br><input type="color" v-model:value="list[nowpage].data[nowxuanzhong].color">
+                    <br><br><br>
+
+                    字号:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].size"
+                        style="width: 100%;">
+                    <br><br><br>
+                    宽:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].width"
+                        style="width: 100%;">
+                    <br><br><br>
+                    高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
+                        style="width: 100%;">
+                    <button @click="deleteppt(nowxuanzhong)">删除</button>
+
+                </div>
+                <div v-else-if="nowzhuangtaihtml==2">
+                    链接:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].url" style="width: 100%;">
+                    <br><br><br>
+                    宽:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].width"
+                        style="width: 100%;">
+                    <br><br><br>
+                    高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
+                        style="width: 100%;">
+                    <button @click="deleteppt(nowxuanzhong)">删除</button>
+                </div>
+                <div v-else-if="nowzhuangtaihtml==3">
+                    链接:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].url" style="width: 100%;">
+                    <br><br><br>
+                    宽:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].width"
+                        style="width: 100%;">
+                    <br><br><br>
+                    高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
+                        style="width: 100%;">
+                    <button @click="deleteppt(nowxuanzhong)">删除</button>
+                </div>
+                <div v-else-if="nowzhuangtaihtml==4">
+                    链接:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].url" style="width: 100%;">
+                    <br><br><br>
+                    文本:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].text"
+                        style="width: 100%;">
+                    <br><br><br>
+                    宽:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].width"
+                        style="width: 100%;">
+                    <br><br><br>
+                    高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
+                        style="width: 100%;">
+                    <button @click="deleteppt(nowxuanzhong)">删除</button>
+                </div>
+            </div>
+            <div class="left">
+                <div class="page" v-for="(item,index) in list" @click="checkpage(index)">
+                    {{index}}
+                </div>
+                <div class="page" @click="addpage()"> +</div>
+            </div>
+            <div class="right">
+                <div class="body" data-get="yes" style="position: relative;">
+                    <div class="div" v-for="(item,index) in list[nowpage].data"
+                        :style="{position: 'absolute', top:item.top+'%',left:item.left+'%',width:item.width+'px',height:item.height+'px'}"
+                        data-get="have" :data-id="index">
+                        <div v-if="item.type=='text'" :data-id="index"
+                            :style="{width:item.width+'px',height:item.height+'px',color:item.color,fontSize:item.size+'px'}">
+                            {{item.text}}</div>
+                        <a :href="item.url" v-else-if="item.type=='a'"
+                            :style="{textAlign:'center',display:'block',margin:'10px'}"
+                            :data-id="index">{{item.text}}</a>
+                        <img v-else-if="item.type=='photo'" :src="item.url" alt=""
+                            :style="{width:item.width+'px',height:item.height+'px'}" :data-id="index">
+                        <video controls name="media" v-else-if="item.type=='mp3'" :data-id="index"
+                            :style="{width:item.width+'px',height:item.height+'px'}">
+                            <source :src="item.url" type="audio/mpeg">
+                        </video>
+
+                        <div v-else-if="item.type=='photo'"
+                            :style="{zIndex:100,position:absolute,width:item.width+'px',height:item.height+'px'}"
+                            :data-id="index">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- vue文件 -->
+    <script src="https://static.codemao.cn/pickduck/ByLiUwd2R.js?hash=FsKq1kU7kSpBG-TFpuKeNzYP0ABC"></script>
+    <script src="./index.js"></script>
+</body>
+
+</html>

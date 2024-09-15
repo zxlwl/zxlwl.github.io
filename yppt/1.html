@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable and Resizable Box</title>
+    <style>
+        .resizable-box {
+            width: 200px;
+            height: 200px;
+            background-color: #f0f0f0;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+            resize: both;
+        }
+
+        .resizer {
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            cursor: nwse-resize;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="resizable-box" id="resizable-box">
+        <div class="resizer" id="resizer"></div>
+    </div>
+    <a href="./" disabled>afawf </a>
+    <!-- <script>
+        const resizableBox = document.getElementById('resizable-box');
+        const resizer = document.getElementById('resizer');
+        let originalWidth = resizableBox.offsetWidth;
+        let originalHeight = resizableBox.offsetHeight;
+        let originalLeft = resizableBox.offsetLeft;
+        let originalTop = resizableBox.offsetTop;
+        let mouseDownX = 0;
+        let mouseDownY = 0;
+        let mouseMoveX = 0;
+        let mouseMoveY = 0;
+
+        resizableBox.addEventListener('mousedown', function (e) {
+            e.preventDefault();
+            mouseDownX = e.clientX - resizableBox.offsetLeft;
+            mouseDownY = e.clientY - resizableBox.offsetTop;
+            mouseMoveX = e.clientX;
+            mouseMoveY = e.clientY;
+
+            window.addEventListener('mousemove', onMouseMove);
+            window.addEventListener('mouseup', onMouseUp);
+        });
+
+        function onMouseMove(e) {
+            const newWidth = originalWidth + (e.clientX - mouseMoveX);
+            const newHeight = originalHeight + (e.clientY - mouseMoveY);
+            const newLeft = originalLeft + (e.clientX - mouseDownX);
+            const newTop = originalTop + (e.clientY - mouseDownY);
+
+            resizableBox.style.width = newWidth + 'px';
+            resizableBox.style.height = newHeight + 'px';
+            resizableBox.style.left = newLeft + 'px';
+            resizableBox.style.top = newTop + 'px';
+
+            mouseMoveX = e.clientX;
+            mouseMoveY = e.clientY;
+        }
+
+        function onMouseUp() {
+            window.removeEventListener('mousemove', onMouseMove);
+            window.removeEventListener('mouseup', onMouseUp);
+        }
+
+    </script> -->
+</body>
+
+</html>

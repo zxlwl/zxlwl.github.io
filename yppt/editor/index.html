@@ -72,6 +72,9 @@
                     文本:<br><input type="text" v-model:value="list[nowpage].data[nowxuanzhong].text"
                         style="width: 100%;">
                     <br><br><br>
+                    字号:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].size"
+                        style="width: 100%;">
+                    <br><br><br>
                     宽:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].width"
                         style="width: 100%;">
                     <br><br><br>
@@ -88,15 +91,14 @@
             </div>
             <div class="right">
                 <div class="body" data-get="yes" style="position: relative;">
-                    <div class="div" v-for="(item,index) in list[nowpage].data"
-                        :style="{position: 'absolute', top:item.top+'%',left:item.left+'%',width:item.width+'px',height:item.height+'px'}"
-                        data-get="have" :data-id="index">
+                    <div class="div" v-for="(item,index) in list[nowpage].data" :style="{position: 'absolute', top:item.top+'%',left:item.left+'%',width:item.width+'px',height:item.height+'px', transform: 'translateY(-'+item.y+'px) translateX(-'+item.x+'px)'
+                        }" data-get="have" :data-id="index">
                         <div v-if="item.type=='text'" :data-id="index"
                             :style="{width:item.width+'px',height:item.height+'px',color:item.color,fontSize:item.size+'px'}">
                             {{item.text}}</div>
                         <a :href="item.url" v-else-if="item.type=='a'"
-                            :style="{textAlign:'center',display:'block',margin:'10px'}"
-                            :data-id="index">{{item.text}}</a>
+                            :style="{textAlign:'center',display:'block',margin:'10px',fontSize:item.size+'px'}"
+                            :data-id="index" onclick="return false">{{item.text}}</a>
                         <img v-else-if="item.type=='photo'" :src="item.url" alt=""
                             :style="{width:item.width+'px',height:item.height+'px'}" :data-id="index">
                         <video controls name="media" v-else-if="item.type=='mp3'" :data-id="index"

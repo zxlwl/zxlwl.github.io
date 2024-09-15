@@ -191,7 +191,9 @@ let move = {
                     color: 'black',
                     width: 100,
                     height: 100,
-                    size: 12,
+                    x: 0,
+                    y: 0,
+                    size: 20,
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
                 })
@@ -201,6 +203,8 @@ let move = {
                     type: 'photo',
                     width: 100,
                     height: 100,
+                    x: 0,
+                    y: 0,
                     url: '',
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
@@ -212,7 +216,10 @@ let move = {
                     width: 100,
                     height: 100,
                     text: '超链接',
+                    x: 0,
+                    y: 0,
                     url: '',
+                    size: 20,
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
                 })
@@ -222,6 +229,8 @@ let move = {
                     type: 'mp3',
                     width: 200,
                     height: 100,
+                    x: 0,
+                    y: 0,
                     url: 'https://static.codemao.cn/pickduck/H1PyV_Y30.mp3?hash=FjV44VrY2_Vf6j3DFKCFmvT3AEln',
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
@@ -233,12 +242,28 @@ let move = {
         }
     }
     page.addEventListener('mousedown', e => {
-        if (e.target.dataset.id) {
+        if (e.target.dataset.get == 'have') {
             nowgetzhujianzuangtai = true
             nowgetdev = e.target.dataset.id
             move.x = e.clientX;
             move.y = e.clientY;
             e.target.classList.add('anzhu')
+            console.log(e, e.clientX, e.target.getBoundingClientRect().left);
+            a.list[a.nowpage].data[nowgetdev].x = (e.clientX - e.target.getBoundingClientRect().left)
+            a.list[a.nowpage].data[nowgetdev].y = (e.clientY - e.target.getBoundingClientRect().top)
+            console.log(a.list[a.nowpage].data[nowgetdev].x);
+
+        }
+        else if (e.target.parentNode.dataset.get == 'have') {
+            nowgetzhujianzuangtai = true
+            nowgetdev = e.target.dataset.id
+            move.x = e.clientX;
+            move.y = e.clientY;
+            e.target.parentNode.classList.add('anzhu')
+            console.log(e, e.clientX, e.target.getBoundingClientRect().left);
+            a.list[a.nowpage].data[nowgetdev].x = (e.clientX - e.target.getBoundingClientRect().left)
+            a.list[a.nowpage].data[nowgetdev].y = (e.clientY - e.target.getBoundingClientRect().top)
+            console.log(a.list[a.nowpage].data[nowgetdev].x);
         }
     })
 
@@ -258,6 +283,8 @@ let move = {
     const myEfficientFn = throttle(function (e) {
 
         if (nowgetzhujianzuangtai) {
+
+
 
 
 

@@ -185,6 +185,8 @@ let move = {
         console.log(2222);
         if (e.target.dataset.get = 'yes') {
             if (nowtake == '文本') {
+                console.log();
+
                 a.list[a.nowpage].data.push({
                     type: 'text',
                     text: '这是文本',
@@ -194,6 +196,8 @@ let move = {
                     x: 0,
                     y: 0,
                     size: 20,
+                    act: 'wu',
+                    num: a.list[a.nowpage].data.length,//顺序
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
                 })
@@ -206,6 +210,8 @@ let move = {
                     x: 0,
                     y: 0,
                     url: '',
+                    num: a.list[a.nowpage].data.length,//顺序
+
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
                 })
@@ -220,6 +226,8 @@ let move = {
                     y: 0,
                     url: '',
                     size: 20,
+                    num: a.list[a.nowpage].data.length,//顺序
+
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
                 })
@@ -231,6 +239,8 @@ let move = {
                     height: 100,
                     x: 0,
                     y: 0,
+                    num: a.list[a.nowpage].data.length,//顺序
+
                     url: 'https://static.codemao.cn/pickduck/H1PyV_Y30.mp3?hash=FjV44VrY2_Vf6j3DFKCFmvT3AEln',
                     top: ((e.clientY - page.getBoundingClientRect().top + window.scrollY)) / page.offsetHeight * 100,
                     left: ((e.clientX - page.getBoundingClientRect().left + window.scrollX)) / page.offsetWidth * 100
@@ -243,6 +253,8 @@ let move = {
     }
     page.addEventListener('mousedown', e => {
         if (e.target.dataset.get == 'have') {
+            console.log(111);
+
             nowgetzhujianzuangtai = true
             nowgetdev = e.target.dataset.id
             move.x = e.clientX;
@@ -255,6 +267,8 @@ let move = {
 
         }
         else if (e.target.parentNode.dataset.get == 'have') {
+            console.log(222, e.target.parentNode);
+
             nowgetzhujianzuangtai = true
             nowgetdev = e.target.dataset.id
             move.x = e.clientX;
@@ -313,7 +327,13 @@ let move = {
     })
     page.addEventListener('mouseup', e => {
         nowgetzhujianzuangtai = false
-        e.target.classList.remove('anzhu')
+
+        if (e.target.dataset.get == 'have') {
+            e.target.classList.remove('anzhu')
+        }
+        else {
+            e.target.parentNode.classList.remove('anzhu')
+        }
     })
     page.addEventListener('click', e => {
         console.log(e.target.dataset.id);

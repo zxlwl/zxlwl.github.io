@@ -43,6 +43,17 @@
                     <br><br><br>
                     高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
                         style="width: 100%;">
+                    <br><br><br>
+                    动画顺序:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].num"
+                        style="width: 100%;">
+                    <br><br><br>
+                    动画:
+                    <select id="cars" name="cars" v-model="list[nowpage].data[nowxuanzhong].act">
+                        <option value="wu">无</option>
+                        <option value="jianxian">渐显</option>
+                        <option value="mohu">模糊</option>
+                        <!-- <option value="audi">奥迪</option> -->
+                    </select>
                     <button @click="deleteppt(nowxuanzhong)">删除</button>
 
                 </div>
@@ -54,6 +65,10 @@
                     <br><br><br>
                     高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
                         style="width: 100%;">
+                    <br><br><br>
+                    动画顺序:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].num"
+                        style="width: 100%;">
+                    <br><br><br>
                     <button @click="deleteppt(nowxuanzhong)">删除</button>
                 </div>
                 <div v-else-if="nowzhuangtaihtml==3">
@@ -64,6 +79,10 @@
                     <br><br><br>
                     高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
                         style="width: 100%;">
+                    <br><br><br>
+                    动画顺序:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].num"
+                        style="width: 100%;">
+                    <br><br><br>
                     <button @click="deleteppt(nowxuanzhong)">删除</button>
                 </div>
                 <div v-else-if="nowzhuangtaihtml==4">
@@ -80,6 +99,10 @@
                     <br><br><br>
                     高:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].height"
                         style="width: 100%;">
+                    <br><br><br>
+                    动画顺序:<br><input type="number" v-model:value="list[nowpage].data[nowxuanzhong].num"
+                        style="width: 100%;">
+                    <br><br><br>
                     <button @click="deleteppt(nowxuanzhong)">删除</button>
                 </div>
             </div>

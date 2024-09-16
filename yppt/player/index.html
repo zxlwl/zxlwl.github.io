@@ -17,7 +17,7 @@
     <div class="app" style="width: 100%;height: 100%;">
         <div class="body" data-get="yes" style="width: 100%;height: 100%;position: relative;">
             <div class="div" v-for="(item,index) in list[nowpage].data" :style="{position: 'absolute', top:item.top+'%',left:item.left+'%',width:item.width+'px',height:item.height+'px', transform: 'translateY(-'+item.y+'px) translateX(-'+item.x+'px)'
-                }" data-get="have" :data-id="index" v-show="nowli>=index">
+                }" data-get="have" :data-id="index" v-show="show(item,index)">
                 <div v-if="item.type=='text'" :data-id="index"
                     :style="{width:item.width+'px',height:item.height+'px',color:item.color,fontSize:item.size+'px'}">
                     {{item.text}}</div>
@@ -96,6 +96,25 @@
                         if (this.list.length - 1 > this.nowpage) {
                             this.nowpage++
                             this.nowli = -1
+                            // if (this.list[this.nowpage].data[this.nowli].act == 'wu') {
+                            //     return true
+                            // }
+                            // else if (this.list[this.nowpage].data[this.nowli].act == 'jianxian') {
+                            //     var element = document.querySelector('[data-id="' + this.nowli + '"]');
+                            //     console.log(element);
+                            //     // element.style.display = 'block'
+                            //     let i = 0;
+                            //     const f = setInterval(() => {
+                            //         if (i > 1.005) {
+                            //             clearInterval(f)
+                            //         }
+                            //         else {
+                            //             element.style.opacity = i
+                            //             console.log(i);
+                            //             i += 0.05
+                            //         }
+                            //     }, 100)
+                            // }
                         }
                         else {
                             alert('播放完成')
@@ -103,9 +122,52 @@
                     }
                     else {
                         this.nowli++
+                        if (this.list[this.nowpage].data[this.nowli].act == 'wu') {
+                            return true
+                        }
+                        else if (this.list[this.nowpage].data[this.nowli].act == 'jianxian') {
+                            var element = document.querySelector('[data-id="' + this.nowli + '"]');
+                            console.log(element);
+                            // element.style.display = 'block'
+                            let i = 0;
+                            const f = setInterval(() => {
+                                if (i > 1.005) {
+                                    clearInterval(f)
+                                }
+                                else {
+                                    element.style.opacity = i
+                                    // console.log(i);
+                                    i += 0.05
+                                }
+                            }, 100)
+                        }
+                        else if (this.list[this.nowpage].data[this.nowli].act == 'mohu') {
+                            var element = document.querySelector('[data-id="' + this.nowli + '"]');
+                            let i = 3;
+                            const f = setInterval(() => {
+                                if (i <= 0) {
+                                    clearInterval(f)
+                                }
+                                else {
+                                    element.style.filter = 'blur(' + i + 'px)'
+                                    console.log(i);
+                                    i -= 0.2
+                                }
+                            }, 100)
+                        }
                     }
                     console.log(this.nowli);
 
+                },
+                show(item, index) {
+                    console.log('sssssssssssss', item.act);
+
+                    if (this.nowli >= item.num) {
+                        return true
+                    }
+                    else {
+                        return false
+                    }
                 }
             }
         })

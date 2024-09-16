@@ -1,0 +1,121 @@
+<div class="div">选择</div>
+<div class="bu">
+    <button id="kai">开始</button>
+    <button id="jie" disabled>结束</button>
+</div>
+单数:去
+双数:不去
+
+<dialog open>
+    <div class="a">awdawd</div>
+</dialog>
+<script src="https://unpkg.com/sober/dist/sober.min.js"></script>
+<s-table>
+    <s-thead>
+        <s-tr>
+            <s-th>title1</s-th>
+            <s-th>title2</s-th>
+            <s-th>title3</s-th>
+            <s-th>title4</s-th>
+            <s-th>title5</s-th>
+        </s-tr>
+    </s-thead>
+    <s-tbody>
+        <s-tr>
+            <s-td>item1</s-td>
+            <s-td>item2</s-td>
+            <s-td>item3</s-td>
+            <s-td>item4</s-td>
+            <s-td>item5</s-td>
+        </s-tr>
+        <s-tr>
+            <s-td>item1</s-td>
+            <s-td>item2</s-td>
+            <s-td>item3</s-td>
+            <s-td>item4</s-td>
+            <s-td>item5</s-td>
+        </s-tr>
+        <s-tr>
+            <s-td>item1</s-td>
+            <s-td>item2</s-td>
+            <s-td>item3</s-td>
+            <s-td>item4</s-td>
+            <s-td>item5</s-td>
+        </s-tr>
+    </s-tbody>
+</s-table>
+<style>
+    .div {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: auto;
+        margin-bottom: auto;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 100px;
+        background-color: #7c7c7c;
+        border-radius: 10px;
+        font-size: 25px;
+    }
+
+    .bu {
+        display: flex;
+        margin-top: 10px;
+        justify-content: center;
+    }
+</style>
+<script>
+    const list = [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+    ]
+    let f;
+    const text = document.querySelector('.div');
+    const kai = document.getElementById('kai')
+    const jie = document.getElementById('jie')
+    kai.addEventListener('click', () => {
+        jie.disabled = false
+        kai.disabled = true
+        let e = 0;
+        f = setInterval(() => {
+            e = Math.floor(Math.random() * (list.length));
+            text.innerHTML = list[e]
+            if (e == 25) {
+                jie.disabled = true
+                kai.disabled = false
+                clearInterval(f)
+            }
+        }, 100)
+    })
+    jie.addEventListener('click', () => {
+        jie.disabled = true
+        kai.disabled = false
+        clearInterval(f)
+    })
+</script>

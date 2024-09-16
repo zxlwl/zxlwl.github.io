@@ -95,12 +95,27 @@ const a = new Vue({
                     };
                     axios(config)
                         .then(re => {
-                            this.guzilist[this.guzilist.length - 1].talk = marked(re.data.output)
+                            const e = marked(re.data.output)
+                            // for (let i = 0; i < e.length; i++) {
+                            //     this.guzilist[this.guzilist.length - 1].talk = e.substring(0, i)
+
+                            // }
+                            let i = 0;
+                            const f = setInterval(() => {
+                                this.guzilist[this.guzilist.length - 1].talk = e.substring(0, i)
+                                i++;
+                                if (i >= e.length) {
+                                    clearInterval(f)
+                                }
+                            }, 50)
                             this.talk = ''
                             this.isdisabled = false
                         })
                         .catch((error) => {
                             console.log(error);
+                            this.talk = ''
+                            this.isdisabled = false
+                            alert('错误' + string(error))
                         });
                 }
                 else {

@@ -1,6 +1,7 @@
 body {
   display: flex;
   height: 100vh;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
   margin: 0;
 }
 ::-webkit-scrollbar {
@@ -15,6 +16,7 @@ body {
 }
 .app {
   display: flex;
+  background-image: linear-gradient(-225deg, #E3FDF5 0%, #FFE6FA 100%);
   width: 100%;
   height: 100%;
 }
@@ -24,7 +26,6 @@ body {
   width: 50px;
   transition: all 0.5s;
   height: 100%;
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   align-items: center;
 }
 .app .left .talklist {
@@ -59,7 +60,6 @@ body {
   width: 180px;
   transition: all 0.5s;
   height: 100%;
-  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
   align-items: center;
 }
 .app .talk {
@@ -101,7 +101,6 @@ body {
 }
 .app .main .talk {
   flex: 1;
-  background-color: #ffffff;
 }
 .app .main .talk ul {
   overflow: auto;
@@ -117,7 +116,6 @@ body {
   display: flex;
   padding: 10px;
   width: 1000px;
-  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
   border-radius: 10px;
   align-items: center;
 }

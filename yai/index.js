@@ -14,6 +14,10 @@ marked.setOptions({
     smartypants: false,
     xhtml: false
 });
+
+
+
+
 const a = new Vue({
     el: '.app',
     data: {
@@ -115,12 +119,34 @@ const a = new Vue({
                             console.log(error);
                             this.talk = ''
                             this.isdisabled = false
-                            alert('错误' + string(error))
+                            // alert('错误' + string(error))
+                            this.$notify.error(
+                                {
+                                    title: '错误',
+                                    duration: 3000,
+                                    message: error
+                                }
+                            )
+                            this.guzilist[this.guzilist.length - 1].talk = error
                         });
                 }
                 else {
-                    alert('请勿输入空信息')
+                    this.$notify({
+                        title: '提示',
+                        message: '请勿输入空消息',
+                        duration: 3000,
+                        type: 'warning'
+                    });
+                    // alert('请勿输入空信息')
                 }
+            }
+            else {
+                this.$notify({
+                    title: '提示',
+                    message: '请等待当前对话完成哦',
+                    duration: 3000,
+                    type: 'warning'
+                });
             }
         },
         genname() {
@@ -158,47 +184,73 @@ const a = new Vue({
                 });
         },
         newphoto() {
-            if (this.talk != '') {
-                this.isdisabled = true
-                this.guzilist.push({
-                    name: '我',
-                    fangwei: true,
-                    talk: this.talk
-                })
-                this.guzilist.push({
-                    name: 'Y ai',
-                    fangwei: false,
-                    talk: 'loading',
-                    src: ''
-                })
-                data = JSON.stringify({
-                    "text": this.talk,
-                    "token": getToken(this.talk),
-                });
-                config = {
-                    method: 'post',
-                    url: 'https://ai.coludai.cn/api/txt2img',
-                    headers: {
-                        'ca': '0fb8f3f3-e2b7-412f-82c9-ff1f6187b1a7',
-                        // 'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-                        'Content-Type': 'application/json'
-                    },
-                    data: data
-                };
-                axios(config)
-                    .then(re => {
-                        this.guzilist[this.guzilist.length - 1].talk = '图片消息'
-                        this.guzilist[this.guzilist.length - 1].src = `https://ai.coludai.cn${re.data.dir}`
-                        this.talk = ''
-                        this.isdisabled = false
+            if (!this.isdisabled) {
+                if (this.talk != '') {
+                    this.isdisabled = true
+                    this.guzilist.push({
+                        name: '我',
+                        fangwei: true,
+                        talk: this.talk
                     })
-                    .catch((error) => {
-                        console.log(error);
+                    this.guzilist.push({
+                        name: 'Y ai',
+                        fangwei: false,
+                        talk: 'loading',
+                        src: ''
+                    })
+                    data = JSON.stringify({
+                        "text": this.talk,
+                        "token": getToken(this.talk),
                     });
+                    config = {
+                        method: 'post',
+                        url: 'https://ai.coludai.cn/api/txt2img',
+                        headers: {
+                            'ca': '0fb8f3f3-e2b7-412f-82c9-ff1f6187b1a7',
+                            // 'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+                            'Content-Type': 'application/json'
+                        },
+                        data: data
+                    };
+                    axios(config)
+                        .then(re => {
+                            this.guzilist[this.guzilist.length - 1].talk = '图片消息'
+                            this.guzilist[this.guzilist.length - 1].src = `https://ai.coludai.cn${re.data.dir}`
+                            this.talk = ''
+                            this.isdisabled = false
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                            this.$notify.error(
+                                {
+                                    title: '错误',
+                                    duration: 3000,
+                                    message: error
+                                }
+                            )
+                            this.guzilist[this.guzilist.length - 1].talk = error
+
+                        });
+                }
+                else {
+                    // alert('请勿输入空消息')
+                    this.$notify({
+                        title: '提示',
+                        message: '请勿输入空消息',
+                        duration: 3000,
+                        type: 'warning'
+                    });
+                }
             }
             else {
-                alert('请勿输入空消息')
+                this.$notify({
+                    title: '提示',
+                    message: '请等待当前对话完成哦',
+                    duration: 3000,
+                    type: 'warning'
+                });
             }
+
 
         },
         kanphoto(index) {

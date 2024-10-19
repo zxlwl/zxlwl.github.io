@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y-cloud</title>
+    <script src="https://static.codemao.cn/pickduck/BkHY-UrsC.js?hash=FsKq1kU7kSpBG-TFpuKeNzYP0ABC"></script>
+    <script src="https://static.codemao.cn/pickduck/B1GGfkopA.js?hash=FmFrVwiHMLUyLBJknTHWIK_Tq8jm"></script>
+    <link rel="stylesheet" href="https://static.codemao.cn/pickduck/Hk_1Ernp0.css?hash=Fl8y3-UvUFExUlQTfAMYdxC1zRyG">
+    <link rel="stylesheet" href="./index.css">
+    <!--jquery-2.2.4.min.js 可替换成其他链接的jq文件，导入一次即可--->
+    <script src="//static2.pgaot.com/Assets/js/jquery-2.2.4.min.js"></script>
+
+    <!--PGAoT的请求的签名方式，导入一次即可-->
+    <script src="//static2.pgaot.com/Assets/js/sipg_jcokxlcsd9.js"></script>
+
+    <!--数据表JavaScript(支持jquery环境)核心处理逻辑类，导入一次即可-->
+    <script src="//static2.pgaot.com/Assets/js.class/pgdbs.class.js"></script>
+    <script
+        src="https://shequ.pgaot.com/AdminPages/pages/Mysqldb/vip/pickduckDBJQ.fdd50789e9ddd2c5c4cd959f532ba189358dea38c3d2cece30f5b83123a2f2a5.js"></script>
+</head>
+
+<body style="height: 100vh;width: 100vw;margin: 0%;">
+    <div class="app">
+        <el-dialog style="border-radius: 10px;min-height: 40%;" title="登入" :visible.sync="dialogopen" width="30%">
+            uuid:<el-input v-model="uuid" style="margin-bottom: 20px;"></el-input>
+            password:<el-input v-model="password" style="margin-bottom: 20px;"></el-input>
+            <el-button @click="login()">登入</el-button>
+        </el-dialog>
+        <el-container>
+            <el-aside class="aside">
+                <el-card shadow="always">
+                    <div class="card">图片</div>
+                    <div class="card">视频</div>
+                    <div class="card">文档</div>
+                    <div class="card">其他</div>
+                </el-card>
+            </el-aside>
+            <el-main class="main">
+                <el-card>
+                    <div class="header">
+                        <div @click="returnmain()"><el-link>返回首页</el-link></div>
+                        <div></div>
+                    </div>
+                    <div class="card" v-for="(item,index) in nowdata" @click="clickdata(index)">
+                        <div class="icon" v-if="item.type=='jia'">
+                            <svg t="1729316864184" class="" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="4857" width="30" height="30">
+                                <path
+                                    d="M918.673 883H104.327C82.578 883 65 867.368 65 848.027V276.973C65 257.632 82.578 242 104.327 242h814.346C940.422 242 958 257.632 958 276.973v571.054C958 867.28 940.323 883 918.673 883z"
+                                    fill="#FFE9B4" p-id="4858"></path>
+                                <path
+                                    d="M512 411H65V210.37C65 188.597 82.598 171 104.371 171h305.92c17.4 0 32.71 11.334 37.681 28.036L512 411z"
+                                    fill="#FFB02C" p-id="4859"></path>
+                                <path
+                                    d="M918.673 883H104.327C82.578 883 65 865.42 65 843.668V335.332C65 313.58 82.578 296 104.327 296h814.346C940.422 296 958 313.58 958 335.332v508.336C958 865.32 940.323 883 918.673 883z"
+                                    fill="#FFCA28" p-id="4860"></path>
+                            </svg>
+                        </div>
+                        <div class="icon" v-else>
+                            <svg t="1729321361677" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" p-id="5883" width="30" height="30">
+                                <path d="M0 0h1024v1024H0V0z" fill="#202425" opacity=".01" p-id="5884"></path>
+                                <path
+                                    d="M102.4 68.266667a34.133333 34.133333 0 0 1 34.133333-34.133334h750.933334a34.133333 34.133333 0 0 1 34.133333 34.133334v634.402133a34.133333 34.133333 0 0 1-10.001067 24.132267l-253.064533 253.064533a34.133333 34.133333 0 0 1-24.132267 10.001067H136.533333a34.133333 34.133333 0 0 1-34.133333-34.133334V68.266667z"
+                                    fill="#11AA66" p-id="5885"></path>
+                                <path
+                                    d="M238.933333 238.933333a34.133333 34.133333 0 0 1 34.133334-34.133333h477.866666a34.133333 34.133333 0 1 1 0 68.266667H273.066667a34.133333 34.133333 0 0 1-34.133334-34.133334z m0 204.8a34.133333 34.133333 0 0 1 34.133334-34.133333h477.866666a34.133333 34.133333 0 1 1 0 68.266667H273.066667a34.133333 34.133333 0 0 1-34.133334-34.133334z m34.133334 170.666667a34.133333 34.133333 0 1 0 0 68.266667h204.8a34.133333 34.133333 0 1 0 0-68.266667H273.066667z"
+                                    fill="#FFFFFF" p-id="5886"></path>
+                                <path
+                                    d="M648.533333 750.933333a34.133333 34.133333 0 0 1 34.133334-34.133333h230.7072a3.413333 3.413333 0 0 1 2.389333 5.802667l-261.393067 261.461333a3.413333 3.413333 0 0 1-5.8368-2.423467V750.933333z"
+                                    fill="#FFAA44" p-id="5887"></path>
+                            </svg>
+                        </div>
+                        {{item.name}}
+                    </div>
+
+                </el-card>
+            </el-main>
+        </el-container>
+
+        <div class="button" @click="add()">
+            <svg t="1729336710114" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="7051" width="30" height="30">
+                <path
+                    d="M279.272727 884.363636l279.272727 0c0-16.058182 2.048-31.650909 5.864727-46.545455L279.272727 837.818182 279.272727 884.363636zM791.272727 1024 791.272727 930.909091 884.363636 930.909091 884.363636 837.818182 791.272727 837.818182 791.272727 744.727273 698.181818 744.727273 698.181818 837.818182 605.090909 837.818182 605.090909 930.909091 698.181818 930.909091 698.181818 1024ZM744.727273 698.181818 279.272727 698.181818l0 46.545455 342.295273 0C654.382545 715.776 697.530182 698.181818 744.727273 698.181818zM279.272727 279.272727l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM279.272727 558.545455l465.454545 0 0 46.545455-465.454545 0 0-46.545455ZM884.363636 204.8 681.239273 0 162.210909 0C162.210909 0 139.636364 0 139.636364 22.760727L139.636364 1001.192727C139.636364 1024 162.210909 1024 162.210909 1024l459.357091 0c-15.080727-13.312-27.973818-29.044364-38.120727-46.545455L186.181818 977.454545 186.181818 46.545455l465.454545 0 0 139.636364c0 46.545455 46.545455 46.545455 46.545455 46.545455l139.636364 0 0 490.356364c17.501091 10.146909 33.233455 23.04 46.545455 38.120727L884.363636 204.8zM279.272727 139.636364l279.272727 0 0 46.545455-279.272727 0 0-46.545455ZM279.272727 418.909091l465.454545 0 0 46.545455-465.454545 0 0-46.545455Z"
+                    fill="#272636" p-id="7052"></path>
+            </svg>
+        </div>
+        <div class="button2" @click="addwenjianjia()">
+            <svg t="1729335583232" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="6888" width="40" height="40">
+                <path
+                    d="M960.083 512.001c0 21.998-17.834 39.829-39.832 39.829H103.745c-21.998 0-39.829-17.831-39.829-39.829s17.831-39.829 39.829-39.829h816.506c21.999 0.001 39.832 17.832 39.832 39.829z"
+                    p-id="6889"></path>
+                <path
+                    d="M512 63.915c21.995 0 39.829 17.834 39.829 39.835v816.503c0 22.001-17.834 39.832-39.829 39.832-21.998 0-39.832-17.831-39.832-39.832V103.75c0-22.001 17.834-39.835 39.832-39.835z"
+                    p-id="6890"></path>
+            </svg>
+        </div>
+
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>

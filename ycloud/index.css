@@ -31,6 +31,7 @@
   min-width: 100px;
   max-width: 200px;
   height: 100%;
+  display: none;
 }
 .app .el-container .aside .el-card {
   width: 100%;

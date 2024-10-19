@@ -113,8 +113,9 @@ const a = new Vue({
                                             id: shuiji_id()
                                         })
                                         this.nowdata = shuzhu
-                                        if (this.islogin) {
-                                            this.setdata();
+                                        console.log(a.islogin);
+                                        if (a.islogin) {
+                                            a.setdata();
                                         }
                                         return item
 
@@ -137,6 +138,8 @@ const a = new Vue({
                                 })
                                 this.nowdata = this.data.data
                                 this.nowid = c;
+
+
                                 if (this.islogin) {
                                     this.setdata();
                                 }
